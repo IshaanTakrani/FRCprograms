@@ -47,7 +47,3 @@ public class Robot extends TimedRobot {
         motor.set(ControlMode.PercentOutput, 0.0);
     }
 }
-
-
-
-//
