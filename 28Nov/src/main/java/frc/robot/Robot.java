@@ -1,35 +1,53 @@
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Solenoid;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.Timer;
 
 public class Robot extends TimedRobot {
-    
-    private final WPI_TalonFX m_leftMotor = new WPI_TalonFX(1); // Left motor on CAN ID 1
-    private final WPI_TalonFX m_rightMotor = new WPI_TalonFX(2); // Right motor on CAN ID 2
-    private final DifferentialDrive m_robotDrive = new DifferentialDrive(m_leftMotor, m_rightMotor);
 
-    
-    private Solenoid m_solenoid;
+    private TalonFX motor; // TalonFX motor controller
+    private Timer timer;   // Timer to control runtime
 
     @Override
     public void robotInit() {
-    
-        m_rightMotor.setInverted(true);
+        // Initialize motor and timer
+        motor = new TalonFX(1); // Replace '1' with the actual CAN ID of your motor controller
+        timer = new Timer();
+    }
 
-    
-        m_solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 0);
+    @Override
+    public void autonomousInit() {
+        // Reset and start the timer
+        timer.reset();
+        timer.start();
+    }
+
+    @Override
+    public void autonomousPeriodic() {
+        if (timer.get() < 5.0) {
+            // Run the motor forward at 50% power for 5 seconds
+            motor.set(ControlMode.PercentOutput, 0.5);
+        } else {
+            // Stop the motor after 5 seconds
+            motor.set(ControlMode.PercentOutput, 0.0);
+        }
     }
 
     @Override
     public void teleopPeriodic() {
-    
-        m_robotDrive.arcadeDrive(0.5, 0.0);
+        // Stop the motor during teleop for safety
+        motor.set(ControlMode.PercentOutput, 0.0);
+    }
 
-    
-        m_solenoid.set(true);
+    @Override
+    public void disabledInit() {
+        // Stop the motor when the robot is disabled
+        motor.set(ControlMode.PercentOutput, 0.0);
     }
 }
+
+
+
+//
