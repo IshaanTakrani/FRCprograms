@@ -12,7 +12,7 @@ The libraries that we will use are below, including the .json that must be impor
 
 |Library|URL|API Docs|
 |--|--|--|
-|CTRE Phoenix v5|https://maven.ctr-electronics.com/release/com/ctre/phoenix/Phoenix5-frc2024-latest.json	https://api.ctr-electronics.com/phoenix/release/java/|https://api.ctr-electronics.com/phoenix/release/java/|
+|CTRE Phoenix v5|https://maven.ctr-electronics.com/release/com/ctre/phoenix/Phoenix5-frc2024-latest.json|https://api.ctr-electronics.com/phoenix/release/java/|
 |CTRE Phoenix v6|https://maven.ctr-electronics.com/release/com/ctre/phoenix6/latest/Phoenix6-frc2024-latest.json|https://api.ctr-electronics.com/phoenix6/release/java/|
 
 
