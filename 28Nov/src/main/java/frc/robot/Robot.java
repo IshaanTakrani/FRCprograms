@@ -5,6 +5,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 
+// XboxController exampleXbox = new XboxController(0); // 0 is the USB Port to be used as indicated on the Driver Station
+
 public class Robot extends TimedRobot {
 
     private TalonFX motor; // TalonFX motor controller
@@ -13,7 +15,7 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         // Initialize motor and timer
-        motor = new TalonFX(1); // Replace '1' with the actual CAN ID of your motor controller
+        motor = new TalonFX(21); // Replace '1' with the actual CAN ID of your motor controller
         timer = new Timer();
     }
 
